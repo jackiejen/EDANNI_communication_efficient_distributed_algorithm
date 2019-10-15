@@ -5,7 +5,7 @@ function EDANNI_example
 clear all
 m = 6; 
 n = 15; 
-n1 = 100;
+n1 = 100; 
 n2 = 40;
 % sparsity density
 p1 = 200/(n1*n2);      
