@@ -1,4 +1,4 @@
-function Proxgradient_noncov3tau2_good
+function EDANNI_example
 % This code is base on EDANNI in the paper "A Provably Communication-Efficient Asynchronous
 % Distributed Inference Method for Convex and Nonconvex Problems"
 %%
