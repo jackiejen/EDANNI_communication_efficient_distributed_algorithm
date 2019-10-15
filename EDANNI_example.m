@@ -1,11 +1,11 @@
-function Proxgradient_noncov3tau2_good
+function EDANNI_example
 % This code is base on EDANNI in the paper "A Provably Communication-Efficient Asynchronous
 % Distributed Inference Method for Convex and Nonconvex Problems"
 %%
 clear all
 m = 6; 
 n = 15; 
-n1 = 100;
+n1 = 100; 
 n2 = 40;
 % sparsity density
 p1 = 200/(n1*n2);      
