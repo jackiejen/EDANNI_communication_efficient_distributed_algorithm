@@ -1,6 +1,8 @@
 function EDANNI_example
-% This code is base on EDANNI in the paper "A Provably Communication-Efficient Asynchronous
+% This code is based on EDANNI in the paper "A Provably Communication-Efficient Asynchronous
 % Distributed Inference Method for Convex and Nonconvex Problems"
+% It solves an example of the sparse PCA problem. The framework of the algorithm for 
+% the LASSO problem is similar with a different subproblem, which can be solved by the same solver.
 %%
 clear all
 m = 6; 
@@ -13,6 +15,7 @@ tau = 0;
 A = floor(0.1*m);
 % probability to update
 probu = 0.2;
+probu1 = 0.3;
 gamma = 0.5;
 rho1 = 1;
 % Choose EDANNI
@@ -59,11 +62,14 @@ while (t <= max_iter && (t<=1 || norm(obj(t) - obj(t-1))>=1e-13))
     At =[];
     At = find(d >= tau);
     Atc = setdiff(all_idx, At);
-    while(length(At) < A)
-        rnd = rand(length(Atc),1); 
+    while(length(At) <= A)
+        l_half = floor(length(Atc)/2);
+        rnd = rand(l_half,1); 
+        rnd1 = rand(length(Atc) - l_half,1); 
         % randomly select idx to be updated; 
         idx_new = Atc(find(rnd>probu)); 
-        At = [At;idx_new];
+        idx_new1 = Atc(find(rnd1>probu1)) + l_half; 
+        At = [At;idx_new;idx_new1];
         Atc = setdiff(all_idx, At);
     end
     %==========================update gt==================================
