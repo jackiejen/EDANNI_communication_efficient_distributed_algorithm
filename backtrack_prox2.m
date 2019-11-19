@@ -1,5 +1,5 @@
 function [ newStep, trialPoint ] = backtrack_prox2(B,xprevious, s, u, theta, gamma, stepsize, gradvalue, gt, rho, rho1, wt)
-% Simple backtracking method used in ISTA.m algorithm 
+% Simple backtracking method used in solver2.m algorithm 
 % Do backtracking to choose a good step and compute the corresponding P_L(x_(k-1))
 n1 =  size(B,3);
 B1 = B(1,:,:,:);

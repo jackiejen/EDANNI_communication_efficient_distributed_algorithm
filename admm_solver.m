@@ -82,7 +82,7 @@ for k = 1:MAX_ITER
     end
     
 end
-k
+% k
 % figure; plot(obj_xx)
 % toc
 % if ~QUIET

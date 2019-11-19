@@ -45,15 +45,15 @@ while iter < max_iter && xdiff > 1e-10 && funcdiff > 1e-8
 %     wprevious = wcurrent;
 %     wcurrent  = softThreshold(wprevious - stepsize*gradvalue, theta*stepsize);
     wprevious               = wcurrent;  
-    [~, wcurrent]    = backtrack_prox2(B,wcurrent, s, u, theta, gamma, stepsize,gradvalue,gt, rho, rho1, wt);% for choose a stepsize
+    [~, wcurrent]    = backtrack_prox2(B,wcurrent, s, u, theta, gamma, stepsize,gradvalue,gt, rho, rho1, wt);
     
-    %update terminating values; no regularization term
+    %update terminating values;
     funcdiff    = ISTAlikelihood_ADMMsubprob(wprevious,B(1,:,:,:),rho,wt)  + gt'*(wprevious - wt) + rho/2*norm(wprevious - wt)^2 + rho1*u'*(wprevious - s) + rho1/2*norm(wprevious - s)^2 ...
         + theta*norm(wprevious,1) - ISTAlikelihood_ADMMsubprob(wcurrent,B(1,:,:,:),rho,wt) - gt'*(wcurrent - wt) - rho/2*norm(wcurrent - wt)^2 - rho1*u'*(wcurrent - s) ...
         - rho1/2*norm(wcurrent - s)^2 - theta*norm(wcurrent,1);
-    if ~accel %regular ISTA search
+    if ~accel 
         searchPoint = wcurrent;
-    else %FISTA search point,
+    else
         searchPoint = wcurrent + iter / (iter + 2) * (wcurrent - wprevious);
     end
 %     
