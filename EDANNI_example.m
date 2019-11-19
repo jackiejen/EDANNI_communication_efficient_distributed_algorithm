@@ -1,8 +1,8 @@
 function EDANNI_example
-% This code is based on EDANNI in the paper "A Provably Communication-Efficient Asynchronous
-% Distributed Inference Method for Convex and Nonconvex Problems"
+% This sample code is based on EDANNI in the paper "A Provably Communication-Efficient Asynchronous
+% Distributed Inference Method for Convex and Nonconvex Problems".
 % It solves an example of the sparse PCA problem. The framework of the algorithm for 
-% the LASSO problem is similar with a different subproblem, which can be solved by the same solver.
+% the LASSO problem is similar with a different subproblem, which can also be solved by a similar solver.
 %%
 clear all
 m = 6; 
@@ -21,7 +21,7 @@ rho1 = 1;
 % Choose EDANNI
 Danni_flag = 1;
 max_iter = 500;
-% starting point of FISTA
+% starting point of EDANNI
 rng(1)
 w0 = randn(n1,1);
 w0 = w0/norm(w0);
@@ -52,7 +52,7 @@ for j = 1:m
 end
 w_old = w; 
 %%
-%--------------------------- update beta -------------------------------
+%--------------------------- update w -------------------------------
 d = zeros(m,1);
 all_idx = (1:m)';
 t = 1;
